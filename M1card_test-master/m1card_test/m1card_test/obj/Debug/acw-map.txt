@@ -1,0 +1,12 @@
+m1card_test.m1_read, m1card_test;md52d185231c894df0b96abdbc7966293d4.m1_read
+m1card_test.m1_read, m1card_test, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md52d185231c894df0b96abdbc7966293d4.m1_read
+m1card_test.m1_read;md52d185231c894df0b96abdbc7966293d4.m1_read
+m1card_test.m1_read;md52d185231c894df0b96abdbc7966293d4.m1_read
+m1card_test.m1_write, m1card_test;md52d185231c894df0b96abdbc7966293d4.m1_write
+m1card_test.m1_write, m1card_test, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md52d185231c894df0b96abdbc7966293d4.m1_write
+m1card_test.m1_write;md52d185231c894df0b96abdbc7966293d4.m1_write
+m1card_test.m1_write;md52d185231c894df0b96abdbc7966293d4.m1_write
+m1card_test.MainActivity, m1card_test;md52d185231c894df0b96abdbc7966293d4.MainActivity
+m1card_test.MainActivity, m1card_test, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md52d185231c894df0b96abdbc7966293d4.MainActivity
+m1card_test.MainActivity;md52d185231c894df0b96abdbc7966293d4.MainActivity
+m1card_test.MainActivity;md52d185231c894df0b96abdbc7966293d4.MainActivity

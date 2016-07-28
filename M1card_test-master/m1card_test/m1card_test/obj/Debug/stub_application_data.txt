@@ -1,0 +1,2 @@
+android.app.Application
+m1card_test.m1card_test
