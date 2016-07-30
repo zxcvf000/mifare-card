@@ -23,13 +23,13 @@ namespace m1card_test
             Button button = FindViewById<Button>(Resource.Id.MyButton);
             Button button2 = FindViewById<Button>(Resource.Id.MyButton2);
 
-            button.Click += delegate
+            button.Click += delegate//點擊時啟動m1_read
             {
                 Intent read_intent = new Intent(this, typeof(m1_read));
                 this.StartActivity(read_intent);
                 Finish();
             };
-            button2.Click += delegate
+            button2.Click += delegate//點擊時啟動m1_write
             {
                 Intent read_intent = new Intent(this, typeof(m1_write));
                 this.StartActivity(read_intent);

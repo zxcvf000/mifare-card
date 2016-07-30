@@ -34,18 +34,18 @@ namespace m1card_test
 
             // Get our button from the layout resource,
             // and attach an event to it
-            Intent Myintent = new Intent(this, GetType());
+            Intent Myintent = new Intent(this, GetType());//建立Intent內容
             Myintent.AddFlags(ActivityFlags.SingleTop);
-            mPendingIntent = PendingIntent.GetActivity(this, 0, Myintent, 0);
+            mPendingIntent = PendingIntent.GetActivity(this, 0, Myintent, 0);//對Intent進行描述
             ndefDetected = new IntentFilter(NfcAdapter.ActionTechDiscovered);
 
             intentF = new IntentFilter[] { ndefDetected };
             techLists = new string[][] { new string[] {"android.nfc.tech.NfcA",
-                "android.nfc.tech.MifareClassic"}};
+                "android.nfc.tech.MifareClassic"}};//設置card類型
 
-            Button button = FindViewById<Button>(Resource.Id.Back_Button);
-            mTV = FindViewById<TextView>(Resource.Id.textview);
-            button.Click += delegate
+            Button button = FindViewById<Button>(Resource.Id.Back_Button);//建立Button
+            mTV = FindViewById<TextView>(Resource.Id.textview);//建立TextView
+            button.Click += delegate//Button Back點擊時返回MainActivity
             {
                 Intent main_intent = new Intent(this, typeof(MainActivity));
                 this.StartActivity(main_intent);
@@ -54,7 +54,7 @@ namespace m1card_test
 
             mTV.Text = "scan a tag";
             
-            if (NfcAdapter.ActionTechDiscovered.Equals(this.Intent.Action))
+            if (NfcAdapter.ActionTechDiscovered.Equals(this.Intent.Action))//自動啟動時由此呼叫OnNewIntent的內容
             {
                 OnNewIntent(this.Intent);
             }
@@ -65,23 +65,23 @@ namespace m1card_test
         {
             base.OnPause();
             NfcManager manager = (NfcManager)GetSystemService(NfcService);
-            manager.DefaultAdapter.DisableForegroundDispatch(this);
+            manager.DefaultAdapter.DisableForegroundDispatch(this);//關閉前台調度
         }
 
         protected override void OnResume()
         {
             base.OnResume();
             NfcManager manager = (NfcManager)GetSystemService(NfcService);
-            manager.DefaultAdapter.EnableForegroundDispatch(this, mPendingIntent, intentF,techLists);
+            manager.DefaultAdapter.EnableForegroundDispatch(this, mPendingIntent, intentF,techLists);//啟動前台調度
         }
 
         protected override void OnNewIntent(Intent intent)
         {
             base.OnNewIntent(intent);
             mTV.Text = "OnNewIntent";
-            var tag = intent.GetParcelableExtra(NfcAdapter.ExtraTag) as Tag;
-            var mfc = Android.Nfc.Tech.MifareClassic.Get(tag);
-            if(mfc==null)
+            var tag = intent.GetParcelableExtra(NfcAdapter.ExtraTag) as Tag;//取得讀取到的Tag
+            var mfc = Android.Nfc.Tech.MifareClassic.Get(tag);//將取得的Tag內容放入MifareClassic
+            if (mfc==null)//確認是否有讀到Tag
             {
                 mTV.Text="mfc==null";
             }
@@ -98,13 +98,13 @@ namespace m1card_test
                     byte[] KeyA = { 0xD3, 0xF7, 0xD3, 0xF7, 0xD3, 0xF7 };
                     byte[] KeyB = { 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF };
                     byte[] theE = { 0xAA, 0xAA, 0xAA, 0xAA, 0xAA, 0xAA, 0xFF, 0x07, 0x80, 0x40, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF};
-                    byte[] theE2 = { 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 };
+                    //byte[] theE2 = { 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 };
 
-                    auth = mfc.AuthenticateSectorWithKeyA(sectorAddress,KeyA);
-                    auth = mfc.AuthenticateSectorWithKeyB(sectorAddress,KeyB);
+                    auth = mfc.AuthenticateSectorWithKeyA(sectorAddress,KeyA);//認證KEY A
+                    auth = mfc.AuthenticateSectorWithKeyB(sectorAddress,KeyB);//認證KEY B
 
                     if (auth==true) {
-                        mfc.WriteBlock(7, theE);
+                        mfc.WriteBlock(7, theE);//寫入block7
                         mfc.Close();
                         mTV.Text = "write OK!";
                     }
